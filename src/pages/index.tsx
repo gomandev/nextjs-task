@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import contentful from '../utils/contentful';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -11,6 +10,7 @@ import { MastHead } from '@modules/sections/MasterHead';
 import { Product } from '@modules/blocks/Product';
 import { Checkbox } from '@modules/atoms/checkbox';
 import { Button } from '@modules/atoms/button';
+import contentful from '../utils/contentful';
 import {
   productSelector,
   handleCart,
@@ -41,10 +41,10 @@ export default function Home({ data }) {
   let filteredProducts = useMemo(() => {
     const hasCategoryFilter = Object.values(isChacked).includes(true);
 
-    const matchesCategories = perfume => {
+    const matchesCategories = (perfume) => {
       if (hasCategoryFilter) {
         return perfume.fields.categories.categories.some(
-          category => isChacked[category] === true,
+          (category) => isChacked[category] === true,
         );
       }
       return true;
@@ -60,14 +60,14 @@ export default function Home({ data }) {
       filteredProducts = [];
     }
   };
-  const handleCheckbox = e => {
-    setIsChacked(prev => ({
+  const handleCheckbox = (e) => {
+    setIsChacked((prev) => ({
       ...prev,
       [e.target.value]: e.target.checked,
     }));
     setList(true);
   };
-  const handleCheckbox2 = e => {
+  const handleCheckbox2 = (e) => {
     const payload = {
       event: e.target.value,
       checked: e.target.checked,
@@ -83,7 +83,7 @@ export default function Home({ data }) {
     setChecked4(false);
   };
 
-  const handleCheckbox3 = e => {
+  const handleCheckbox3 = (e) => {
     const payload = {
       event: e.target.value,
       checked: e.target.checked,
@@ -100,7 +100,7 @@ export default function Home({ data }) {
     setChecked4(false);
   };
 
-  const handleCheckbox4 = e => {
+  const handleCheckbox4 = (e) => {
     const payload = {
       event: e.target.value,
       checked: e.target.checked,
@@ -116,7 +116,7 @@ export default function Home({ data }) {
     setChecked3(false);
   };
 
-  const handleCheckbox1 = e => {
+  const handleCheckbox1 = (e) => {
     const payload = {
       event: e.target.value,
       checked: e.target.checked,
@@ -181,31 +181,31 @@ export default function Home({ data }) {
                   </div>
                   <ul style={{ borderBottom: '1px solid #C2C2C2' }}>
                     <li>
-                      <Checkbox onChange={e => handleCheckbox(e)} value="People" />
+                      <Checkbox onChange={(e) => handleCheckbox(e)} value="People" />
                       People
                     </li>
                     <li>
-                      <Checkbox onChange={e => handleCheckbox(e)} value="Premium" />
+                      <Checkbox onChange={(e) => handleCheckbox(e)} value="Premium" />
                       Premium
                     </li>
                     <li>
-                      <Checkbox onChange={e => handleCheckbox(e)} value="Pets" />
+                      <Checkbox onChange={(e) => handleCheckbox(e)} value="Pets" />
                       Pets
                     </li>
                     <li>
-                      <Checkbox onChange={e => handleCheckbox(e)} value="Food" />
+                      <Checkbox onChange={(e) => handleCheckbox(e)} value="Food" />
                       Food
                     </li>
                     <li>
-                      <Checkbox onChange={e => handleCheckbox(e)} value="Landmark" />
+                      <Checkbox onChange={(e) => handleCheckbox(e)} value="Landmark" />
                       Landmark
                     </li>
                     <li>
-                      <Checkbox onChange={e => handleCheckbox(e)} value="Cities" />
+                      <Checkbox onChange={(e) => handleCheckbox(e)} value="Cities" />
                       Cities
                     </li>
                     <li>
-                      <Checkbox onChange={e => handleCheckbox(e)} value="Nature" />
+                      <Checkbox onChange={(e) => handleCheckbox(e)} value="Nature" />
                       Nature
                     </li>
                   </ul>
@@ -213,7 +213,7 @@ export default function Home({ data }) {
                   <ul>
                     <li>
                       <Checkbox
-                        onChange={e => handleCheckbox1(e)}
+                        onChange={(e) => handleCheckbox1(e)}
                         value="$20"
                         checked={checked}
                       />
@@ -221,7 +221,7 @@ export default function Home({ data }) {
                     </li>
                     <li>
                       <Checkbox
-                        onChange={e => handleCheckbox2(e)}
+                        onChange={(e) => handleCheckbox2(e)}
                         value="$20 - $100"
                         checked={checked2}
                       />
@@ -229,7 +229,7 @@ export default function Home({ data }) {
                     </li>
                     <li>
                       <Checkbox
-                        onChange={e => handleCheckbox3(e)}
+                        onChange={(e) => handleCheckbox3(e)}
                         value="$100 - $200"
                         checked={checked3}
                       />
@@ -237,7 +237,7 @@ export default function Home({ data }) {
                     </li>
                     <li>
                       <Checkbox
-                        onChange={e => handleCheckbox4(e)}
+                        onChange={(e) => handleCheckbox4(e)}
                         value="More than $200"
                         checked={checked4}
                       />
