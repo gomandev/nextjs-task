@@ -35,7 +35,7 @@ export default function Home() {
     dispatch(products());
   }, []);
   const { product, cart, filtered } = useSelector(productSelector);
-  console.log(filtered);
+
   const onclick = (p: any) => {
     dispatch(handleCart(p));
     setIsOpen(true);
@@ -54,7 +54,11 @@ export default function Home() {
 
     return product.filter(matchesCategories);
   }, [product, isChacked]);
-  console.log(filteredProducts);
+
+  const handleFilterClear = () => {
+    dispatch(clearFilter());
+    setOpenFilter(false);
+  };
   const handleCheckbox = e => {
     setIsChacked(prev => ({
       ...prev,
@@ -162,7 +166,10 @@ export default function Home() {
           <div className="filter-inner">
             <div className="filter-card">
               <div style={{ position: 'relative' }}>
-                <div style={{ overflow: 'scroll' }} className="filter-bar">
+                <div
+                  style={{ overflow: 'scroll', height: '45vh' }}
+                  className="filter-bar"
+                >
                   <div className="flex justify-between">
                     <h1 className="subtitle mb-10">Filter</h1>
                     <i
@@ -238,10 +245,12 @@ export default function Home() {
                   </ul>
                 </div>
                 <div className="filter-bottom w-fill justify-between flex">
-                  <Button width="150" outline>
+                  <Button onClick={() => handleFilterClear()} width="150" outline>
                     Cancel
                   </Button>
-                  <Button width="150">Save</Button>
+                  <Button onClick={() => setOpenFilter(false)} width="150">
+                    Save
+                  </Button>
                 </div>
               </div>
             </div>

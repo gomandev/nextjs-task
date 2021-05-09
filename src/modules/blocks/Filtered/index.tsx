@@ -6,9 +6,10 @@ type Product = {
   product: any;
   url: string;
   onclick: Function;
+  key: number;
 };
-export const Filtered: FC<Product> = ({ product, url, onclick }) => (
-  <div className="product-grid">
+export const Filtered: FC<Product> = ({ product, url, onclick, key }) => (
+  <div key={key} className="product-grid">
     <div className="image-wrapper">
       <Image
         src={`https:${url}`}
@@ -23,10 +24,7 @@ export const Filtered: FC<Product> = ({ product, url, onclick }) => (
     <div className="details">
       <h1 className="product-title">{product.name}</h1>
       <p className="product-tag">{product.categories.categories}</p>
-      <p className="product-price">
-        $
-        {product.price}
-      </p>
+      <p className="product-price">${product.price}</p>
     </div>
   </div>
 );

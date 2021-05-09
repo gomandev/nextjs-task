@@ -80,13 +80,13 @@
     z-index: 112;
     background: #ffffff;
     width: 100%;
-    min-height: 60vh;
-    overflow: hidden;
+    /* min-height: 60vh; */
+    /* overflow-y: scroll; */
   }
 
   .filter-bottom {
     position: absolute;
-    top: 45%;
+    top: 100%;
     z-index: 120;
     left: 0;
     background: #ffffff;

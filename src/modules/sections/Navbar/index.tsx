@@ -17,7 +17,7 @@ export const Navbar: FC<Open> = ({ open, setOpen, cart }) => {
     <header className="header">
       <nav className="site-navbar">
         <div className="flex justify-between">
-          <p className="logo">bejamas</p>
+          <p className="logo">bejamas_</p>
           <div
             style={{ position: 'relative', marginRight: '1.5em' }}
             onClick={() => setOpen(true)}
@@ -63,10 +63,7 @@ export const Navbar: FC<Open> = ({ open, setOpen, cart }) => {
                         <p style={{ fontSize: '1rem', fontWeight: 'bold' }}>
                           {c.name}
                         </p>
-                        <p className="product-tag">
-                          $
-                          {c.price}
-                        </p>
+                        <p className="product-tag">${c.price}</p>
                       </div>
                       <Image
                         src={`https:${url}`}
