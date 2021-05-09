@@ -84,6 +84,16 @@
     /* overflow-y: scroll; */
   }
 
+  .card {
+    width: 100%;
+    min-height: 250px;
+    border: 4px solid #e4e4e4;
+    background-color: #fff;
+    position: absolute;
+    z-index: 99;
+    left: 0;
+  }
+
   .filter-bottom {
     position: absolute;
     top: 100%;

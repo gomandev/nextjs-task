@@ -1,7 +1,9 @@
 import { Button } from '@modules/atoms/button';
 import Image from 'next/image';
 import ReactPaginate from 'react-paginate';
-import { FC, useEffect, useMemo, useState } from 'react';
+import {
+  FC, useEffect, useMemo, useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   clearFilter,
@@ -57,7 +59,7 @@ export const Product: FC<Product> = (
 
   const filteredPrice = useMemo(() => filtered, [filtered, checked, checked2]);
 
-  const handleCheckbox2 = e => {
+  const handleCheckbox2 = (e) => {
     const payload = {
       event: e.target.value,
       checked: e.target.checked,
@@ -73,7 +75,7 @@ export const Product: FC<Product> = (
     setChecked4(false);
   };
 
-  const handleCheckbox3 = e => {
+  const handleCheckbox3 = (e) => {
     const payload = {
       event: e.target.value,
       checked: e.target.checked,
@@ -90,7 +92,7 @@ export const Product: FC<Product> = (
     setChecked4(false);
   };
 
-  const handleCheckbox4 = e => {
+  const handleCheckbox4 = (e) => {
     const payload = {
       event: e.target.value,
       checked: e.target.checked,
@@ -106,7 +108,7 @@ export const Product: FC<Product> = (
     setChecked3(false);
   };
 
-  const handleCheckbox1 = e => {
+  const handleCheckbox1 = (e) => {
     const payload = {
       event: e.target.value,
       checked: e.target.checked,
@@ -121,7 +123,7 @@ export const Product: FC<Product> = (
     setChecked4(false);
   };
 
-  const sort = e => {
+  const sort = (e) => {
     const keyword = e.target.value;
     setSelected(keyword);
     if (keyword === 'price') {
@@ -129,7 +131,9 @@ export const Product: FC<Product> = (
         .slice(offset, offset + PER_PAGE)
         .sort((a, b) => a.fields.price - b.fields.price)
         .map((p: any, index: number) => {
-          const { name, image, categories, price } = p.fields;
+          const {
+            name, image, categories, price,
+          } = p.fields;
           const { url } = image.fields.file;
           return (
             <div key={index} className="product-grid">
@@ -146,10 +150,13 @@ export const Product: FC<Product> = (
               </div>
               <div className="details">
                 <h1 className="product-title">{name}</h1>
-                {categories.categories.map(c => (
+                {categories.categories.map((c) => (
                   <p className="product-tag">{c}</p>
                 ))}
-                <p className="product-price">${price}</p>
+                <p className="product-price">
+                  $
+                  {price}
+                </p>
               </div>
             </div>
           );
@@ -162,7 +169,9 @@ export const Product: FC<Product> = (
         .slice(offset, offset + PER_PAGE)
         .sort((a, b) => a.fields.name.localeCompare(b.fields.name))
         .map((p: any, index: number) => {
-          const { name, image, categories, price } = p.fields;
+          const {
+            name, image, categories, price,
+          } = p.fields;
           const { url } = image.fields.file;
           return (
             <div key={index} className="product-grid">
@@ -179,10 +188,13 @@ export const Product: FC<Product> = (
               </div>
               <div className="details">
                 <h1 className="product-title">{name}</h1>
-                {categories.categories.map(c => (
+                {categories.categories.map((c) => (
                   <p className="product-tag">{c}</p>
                 ))}
-                <p className="product-price">${price}</p>
+                <p className="product-price">
+                  $
+                  {price}
+                </p>
               </div>
             </div>
           );
@@ -197,7 +209,9 @@ export const Product: FC<Product> = (
   const currentPagecontacts: any = products
     .slice(offset, offset + PER_PAGE)
     .map((p: any, index: number) => {
-      const { name, image, categories, price, bestseller } = p.fields;
+      const {
+        name, image, categories, price, bestseller,
+      } = p.fields;
       const { url } = image.fields.file;
       return (
         <div key={index} className="product-grid">
@@ -221,10 +235,13 @@ export const Product: FC<Product> = (
           </div>
           <div className="details">
             <h1 className="product-title">{name}</h1>
-            {categories.categories.map(c => (
+            {categories.categories.map((c) => (
               <p className="product-tag">{c}</p>
             ))}
-            <p className="product-price">${price}</p>
+            <p className="product-price">
+              $
+              {price}
+            </p>
           </div>
         </div>
       );
@@ -234,7 +251,9 @@ export const Product: FC<Product> = (
       .slice(offset, offset + PER_PAGE)
       .sort((a, b) => a.fields.price - b.fields.price)
       .map((p: any, index: number) => {
-        const { name, image, categories, price } = p.fields;
+        const {
+          name, image, categories, price,
+        } = p.fields;
         const { url } = image.fields.file;
         return (
           <div key={index} className="product-grid">
@@ -251,10 +270,13 @@ export const Product: FC<Product> = (
             </div>
             <div className="details">
               <h1 className="product-title">{name}</h1>
-              {categories.categories.map(c => (
+              {categories.categories.map((c) => (
                 <p className="product-tag">{c}</p>
               ))}
-              <p className="product-price">${price}</p>
+              <p className="product-price">
+                $
+                {price}
+              </p>
             </div>
           </div>
         );
@@ -270,7 +292,9 @@ export const Product: FC<Product> = (
       .sort((a, b) => b.fields.price - a.fields.price)
 
       .map((p: any, index: number) => {
-        const { name, image, categories, price } = p.fields;
+        const {
+          name, image, categories, price,
+        } = p.fields;
         const { url } = image.fields.file;
         return (
           <div key={index} className="product-grid">
@@ -287,10 +311,13 @@ export const Product: FC<Product> = (
             </div>
             <div className="details">
               <h1 className="product-title">{name}</h1>
-              {categories.categories.map(c => (
+              {categories.categories.map((c) => (
                 <p className="product-tag">{c}</p>
               ))}
-              <p className="product-price">${price}</p>
+              <p className="product-price">
+                $
+                {price}
+              </p>
             </div>
           </div>
         );
@@ -304,7 +331,9 @@ export const Product: FC<Product> = (
       .slice(offset, offset + PER_PAGE)
       .sort((a, b) => b.fields.price - a.fields.price)
       .map((p: any, index: number) => {
-        const { name, image, categories, price, bestseller } = p.fields;
+        const {
+          name, image, categories, price, bestseller,
+        } = p.fields;
         const { url } = image.fields.file;
         return (
           <div key={index} className="product-grid">
@@ -329,10 +358,13 @@ export const Product: FC<Product> = (
             </div>
             <div className="details">
               <h1 className="product-title">{name}</h1>
-              {categories.categories.map(c => (
+              {categories.categories.map((c) => (
                 <p className="product-tag">{c}</p>
               ))}
-              <p className="product-price">${price}</p>
+              <p className="product-price">
+                $
+                {price}
+              </p>
             </div>
           </div>
         );
@@ -364,7 +396,10 @@ export const Product: FC<Product> = (
       <div className="top-list">
         <div className="flex justify-between">
           <div className="breadcrumbs flex">
-            <p>Photography</p> /<span>Premium Photos</span>
+            <p>Photography</p>
+            {' '}
+            /
+            <span>Premium Photos</span>
           </div>
           <div className="sort flex">
             <div className="flex mt-4 mr-3">
@@ -399,7 +434,7 @@ export const Product: FC<Product> = (
             </div>
             <div className="flex">
               <p className="sortby mr-3">Sortby</p>
-              <select onChange={e => sort(e)} className="sort-select">
+              <select onChange={(e) => sort(e)} className="sort-select">
                 <option value="select">Select Option</option>
                 <option value="price">Price</option>
                 <option value="alphabetically">Alphabetically</option>
@@ -440,31 +475,31 @@ export const Product: FC<Product> = (
             <h1 className="subtitle mb-10">Categoriescategories</h1>
             <ul style={{ borderBottom: '1px solid #C2C2C2' }}>
               <li>
-                <Checkbox onChange={e => handleCheckbox(e)} value="People" />
+                <Checkbox onChange={(e) => handleCheckbox(e)} value="People" />
                 People
               </li>
               <li>
-                <Checkbox onChange={e => handleCheckbox(e)} value="Premium" />
+                <Checkbox onChange={(e) => handleCheckbox(e)} value="Premium" />
                 Premium
               </li>
               <li>
-                <Checkbox onChange={e => handleCheckbox(e)} value="Pets" />
+                <Checkbox onChange={(e) => handleCheckbox(e)} value="Pets" />
                 Pets
               </li>
               <li>
-                <Checkbox onChange={e => handleCheckbox(e)} value="Food" />
+                <Checkbox onChange={(e) => handleCheckbox(e)} value="Food" />
                 Food
               </li>
               <li>
-                <Checkbox onChange={e => handleCheckbox(e)} value="Landmark" />
+                <Checkbox onChange={(e) => handleCheckbox(e)} value="Landmark" />
                 Landmark
               </li>
               <li>
-                <Checkbox onChange={e => handleCheckbox(e)} value="Cities" />
+                <Checkbox onChange={(e) => handleCheckbox(e)} value="Cities" />
                 Cities
               </li>
               <li>
-                <Checkbox onChange={e => handleCheckbox(e)} value="Nature" />
+                <Checkbox onChange={(e) => handleCheckbox(e)} value="Nature" />
                 Nature
               </li>
             </ul>
@@ -472,7 +507,7 @@ export const Product: FC<Product> = (
             <ul>
               <li>
                 <Checkbox
-                  onChange={e => handleCheckbox1(e)}
+                  onChange={(e) => handleCheckbox1(e)}
                   value="$20"
                   checked={checked}
                 />
@@ -480,7 +515,7 @@ export const Product: FC<Product> = (
               </li>
               <li>
                 <Checkbox
-                  onChange={e => handleCheckbox2(e)}
+                  onChange={(e) => handleCheckbox2(e)}
                   value="$20 - $100"
                   checked={checked2}
                 />
@@ -488,7 +523,7 @@ export const Product: FC<Product> = (
               </li>
               <li>
                 <Checkbox
-                  onChange={e => handleCheckbox3(e)}
+                  onChange={(e) => handleCheckbox3(e)}
                   value="$100 - $200"
                   checked={checked3}
                 />
@@ -496,7 +531,7 @@ export const Product: FC<Product> = (
               </li>
               <li>
                 <Checkbox
-                  onChange={e => handleCheckbox4(e)}
+                  onChange={(e) => handleCheckbox4(e)}
                   value="More than $200"
                   checked={checked4}
                 />
@@ -524,18 +559,18 @@ export const Product: FC<Product> = (
                 <>
                   {list
                     ? filteredProducts
-                        .slice(offset, offset + PER_PAGE)
-                        .map(({ fields }: any, index: number) => {
-                          const { url } = fields.image.fields.file;
-                          return (
-                            <Filtered
-                              onclick={onclick}
-                              product={fields}
-                              url={url}
-                              key={index}
-                            />
-                          );
-                        })
+                      .slice(offset, offset + PER_PAGE)
+                      .map(({ fields }: any, index: number) => {
+                        const { url } = fields.image.fields.file;
+                        return (
+                          <Filtered
+                            onclick={onclick}
+                            product={fields}
+                            url={url}
+                            key={index}
+                          />
+                        );
+                      })
                     : renderSort()}
                 </>
               )}

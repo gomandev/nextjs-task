@@ -16,8 +16,12 @@ export const MastHead: FC<Product> = ({ products, open, onclick }) => {
         if (product.fields.featured === true) return product.fields;
       })
       .map((p: any) => {
-        const { name, image, category, details } = p.fields;
-        const { recommended, dimmentions, size, description } = details;
+        const {
+          name, image, category, details,
+        } = p.fields;
+        const {
+          recommended, dimmentions, size, description,
+        } = details;
         const { url } = image.fields.file;
 
         return (
@@ -71,11 +75,21 @@ export const MastHead: FC<Product> = ({ products, open, onclick }) => {
                   </div>
                   <h1 className="subtitle mb-2">Details</h1>
                   <p className="text mb-2">
-                    Size: {dimmentions.width} x {dimmentions.height} pixel
+                    Size:
+                    {' '}
+                    {dimmentions.width}
+                    {' '}
+                    x
+                    {' '}
+                    {dimmentions.height}
+                    {' '}
+                    pixel
                   </p>
                   <p className="text">
                     Size:
-                    {size} mb
+                    {size}
+                    {' '}
+                    mb
                   </p>
                 </div>
               </div>

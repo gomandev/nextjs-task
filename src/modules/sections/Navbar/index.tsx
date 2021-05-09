@@ -63,7 +63,10 @@ export const Navbar: FC<Open> = ({ open, setOpen, cart }) => {
                         <p style={{ fontSize: '1rem', fontWeight: 'bold' }}>
                           {c.name}
                         </p>
-                        <p className="product-tag">${c.price}</p>
+                        <p className="product-tag">
+                          $
+                          {c.price}
+                        </p>
                       </div>
                       <Image
                         src={`https:${url}`}

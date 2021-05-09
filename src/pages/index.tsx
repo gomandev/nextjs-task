@@ -9,6 +9,7 @@ import { Navbar } from '@modules/sections/Navbar';
 import { MastHead } from '@modules/sections/MasterHead';
 import { Product } from '@modules/blocks/Product';
 import { Checkbox } from '@modules/atoms/checkbox';
+import { Button } from '@modules/atoms/button';
 import {
   productSelector,
   products,
@@ -18,7 +19,6 @@ import {
 } from '../store/ducks/products';
 import Storyblok from '../utils/contentful';
 import styles from '../styles/Home.module.css';
-import { Button } from '@modules/atoms/button';
 
 export default function Home() {
   // const story = useStoryblok(props.story, props.preview);
@@ -40,7 +40,7 @@ export default function Home() {
     dispatch(handleCart(p));
     setIsOpen(true);
   };
-  const filteredProducts = useMemo(() => {
+  let filteredProducts = useMemo(() => {
     const hasCategoryFilter = Object.values(isChacked).includes(true);
 
     const matchesCategories = perfume => {
@@ -58,6 +58,9 @@ export default function Home() {
   const handleFilterClear = () => {
     dispatch(clearFilter());
     setOpenFilter(false);
+    if (filteredProducts.length) {
+      filteredProducts = [];
+    }
   };
   const handleCheckbox = e => {
     setIsChacked(prev => ({
@@ -246,7 +249,7 @@ export default function Home() {
                 </div>
                 <div className="filter-bottom w-fill justify-between flex">
                   <Button onClick={() => handleFilterClear()} width="150" outline>
-                    Cancel
+                    Clear
                   </Button>
                   <Button onClick={() => setOpenFilter(false)} width="150">
                     Save
