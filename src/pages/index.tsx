@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import contentful from '../utils/contentful';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -12,16 +13,13 @@ import { Checkbox } from '@modules/atoms/checkbox';
 import { Button } from '@modules/atoms/button';
 import {
   productSelector,
-  products,
   handleCart,
   filterPrice,
   clearFilter,
+  feedInProducts,
 } from '../store/ducks/products';
-import Storyblok from '../utils/contentful';
-import styles from '../styles/Home.module.css';
 
-export default function Home() {
-  // const story = useStoryblok(props.story, props.preview);
+export default function Home({ data }) {
   const [isOpen, setIsOpen] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
   const [list, setList] = useState(false);
@@ -32,7 +30,7 @@ export default function Home() {
   const [checked4, setChecked4] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(products());
+    dispatch(feedInProducts(data));
   }, []);
   const { product, cart, filtered } = useSelector(productSelector);
 
@@ -264,7 +262,16 @@ export default function Home() {
   );
 }
 
-interface Params {
-  version: string;
-  cv?: any;
+export async function getStaticProps(context) {
+  const data = await contentful.getEntries();
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { data: data.items }, // will be passed to the page component as props
+  };
 }
