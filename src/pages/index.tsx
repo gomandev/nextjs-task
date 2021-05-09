@@ -18,6 +18,7 @@ import {
 } from '../store/ducks/products';
 import Storyblok from '../utils/contentful';
 import styles from '../styles/Home.module.css';
+import { Button } from '@modules/atoms/button';
 
 export default function Home() {
   // const story = useStoryblok(props.story, props.preview);
@@ -160,80 +161,88 @@ export default function Home() {
         <div className="filter-container">
           <div className="filter-inner">
             <div className="filter-card">
-              <div className="filter-bar">
-                <div className="flex justify-between">
-                  <h1 className="subtitle mb-10">Filter</h1>
-                  <i
-                    onClick={() => setOpenFilter(false)}
-                    style={{ fontSize: '2em', cursor: 'pointer' }}
-                    className="fas fa-times"
-                  />
+              <div style={{ position: 'relative' }}>
+                <div style={{ overflow: 'scroll' }} className="filter-bar">
+                  <div className="flex justify-between">
+                    <h1 className="subtitle mb-10">Filter</h1>
+                    <i
+                      onClick={() => setOpenFilter(false)}
+                      style={{ fontSize: '2em', cursor: 'pointer' }}
+                      className="fas fa-times"
+                    />
+                  </div>
+                  <ul style={{ borderBottom: '1px solid #C2C2C2' }}>
+                    <li>
+                      <Checkbox onChange={e => handleCheckbox(e)} value="People" />
+                      People
+                    </li>
+                    <li>
+                      <Checkbox onChange={e => handleCheckbox(e)} value="Premium" />
+                      Premium
+                    </li>
+                    <li>
+                      <Checkbox onChange={e => handleCheckbox(e)} value="Pets" />
+                      Pets
+                    </li>
+                    <li>
+                      <Checkbox onChange={e => handleCheckbox(e)} value="Food" />
+                      Food
+                    </li>
+                    <li>
+                      <Checkbox onChange={e => handleCheckbox(e)} value="Landmark" />
+                      Landmark
+                    </li>
+                    <li>
+                      <Checkbox onChange={e => handleCheckbox(e)} value="Cities" />
+                      Cities
+                    </li>
+                    <li>
+                      <Checkbox onChange={e => handleCheckbox(e)} value="Nature" />
+                      Nature
+                    </li>
+                  </ul>
+                  <h1 className="subtitle mb-10 mt-5">Price Range</h1>
+                  <ul>
+                    <li>
+                      <Checkbox
+                        onChange={e => handleCheckbox1(e)}
+                        value="$20"
+                        checked={checked}
+                      />
+                      Less Tan $20
+                    </li>
+                    <li>
+                      <Checkbox
+                        onChange={e => handleCheckbox2(e)}
+                        value="$20 - $100"
+                        checked={checked2}
+                      />
+                      $20 - $100
+                    </li>
+                    <li>
+                      <Checkbox
+                        onChange={e => handleCheckbox3(e)}
+                        value="$100 - $200"
+                        checked={checked3}
+                      />
+                      $100 - $200
+                    </li>
+                    <li>
+                      <Checkbox
+                        onChange={e => handleCheckbox4(e)}
+                        value="More than $200"
+                        checked={checked4}
+                      />
+                      More than $200
+                    </li>
+                  </ul>
                 </div>
-                <ul style={{ borderBottom: '1px solid #C2C2C2' }}>
-                  <li>
-                    <Checkbox onChange={e => handleCheckbox(e)} value="People" />
-                    People
-                  </li>
-                  <li>
-                    <Checkbox onChange={e => handleCheckbox(e)} value="Premium" />
-                    Premium
-                  </li>
-                  <li>
-                    <Checkbox onChange={e => handleCheckbox(e)} value="Pets" />
-                    Pets
-                  </li>
-                  <li>
-                    <Checkbox onChange={e => handleCheckbox(e)} value="Food" />
-                    Food
-                  </li>
-                  <li>
-                    <Checkbox onChange={e => handleCheckbox(e)} value="Landmark" />
-                    Landmark
-                  </li>
-                  <li>
-                    <Checkbox onChange={e => handleCheckbox(e)} value="Cities" />
-                    Cities
-                  </li>
-                  <li>
-                    <Checkbox onChange={e => handleCheckbox(e)} value="Nature" />
-                    Nature
-                  </li>
-                </ul>
-                <h1 className="subtitle mb-10 mt-5">Price Range</h1>
-                <ul>
-                  <li>
-                    <Checkbox
-                      onChange={e => handleCheckbox1(e)}
-                      value="$20"
-                      checked={checked}
-                    />
-                    Less Tan $20
-                  </li>
-                  <li>
-                    <Checkbox
-                      onChange={e => handleCheckbox2(e)}
-                      value="$20 - $100"
-                      checked={checked2}
-                    />
-                    $20 - $100
-                  </li>
-                  <li>
-                    <Checkbox
-                      onChange={e => handleCheckbox3(e)}
-                      value="$100 - $200"
-                      checked={checked3}
-                    />
-                    $100 - $200
-                  </li>
-                  <li>
-                    <Checkbox
-                      onChange={e => handleCheckbox4(e)}
-                      value="More than $200"
-                      checked={checked4}
-                    />
-                    More than $200
-                  </li>
-                </ul>
+                <div className="filter-bottom w-fill justify-between flex">
+                  <Button width="150" outline>
+                    Cancel
+                  </Button>
+                  <Button width="150">Save</Button>
+                </div>
               </div>
             </div>
           </div>
@@ -247,29 +256,3 @@ interface Params {
   version: string;
   cv?: any;
 }
-
-// export async function getStaticProps(context) {
-//   // the slug of the story
-//   let slug = 'products';
-//   // the storyblok params
-//   let params: Params = {
-//     version: 'draft', // or 'published'
-//   };
-//   // checks if Next.js is in preview mode
-//   if (context.preview) {
-//     // loads the draft version
-//     params.version = 'draft';
-//     // appends the cache version to get the latest content
-//     params.cv = Date.now();
-//   }
-//   // loads the story from the Storyblok API
-//   let { data } = await Storyblok.get(`cdn/stories/${slug}`, params);
-//   // return the story from Storyblok and whether preview mode is active
-//   return {
-//     props: {
-//       story: data ? data.story : false,
-//       preview: context.preview || false,
-//     },
-//     revalidate: 10,
-//   };
-// }

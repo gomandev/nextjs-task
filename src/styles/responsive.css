@@ -80,7 +80,18 @@
     z-index: 112;
     background: #ffffff;
     width: 100%;
-    min-height: 70vh;
+    min-height: 60vh;
+    overflow: hidden;
+  }
+
+  .filter-bottom {
+    position: absolute;
+    top: 45%;
+    z-index: 120;
+    left: 0;
+    background: #ffffff;
+    width: 100%;
+    padding: 1em 1em;
   }
 
   .product-list {

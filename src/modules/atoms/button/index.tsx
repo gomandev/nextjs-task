@@ -7,6 +7,7 @@ export interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
   fill?: boolean;
   outline?: boolean;
+  width?: string;
 }
 
 // const ButtonMapper: Record<ButtonVariant, string> = {
@@ -30,6 +31,7 @@ export const Button: FC<ButtonProps> = ({
   children,
   type = 'button',
   outline,
+  width,
 }) => (
   <button
     type={type}
@@ -38,12 +40,13 @@ export const Button: FC<ButtonProps> = ({
     className={clsx(
       'but',
       outline
-        ? 'text-main-black bg-transparent border-2 border-main-black w-fill'
+        ? 'text-main-black bg-transparent border-2 border-main-black'
         : 'text-main-white bg-black ',
     )}
     style={{
       backgroundColor: `${outline ? '' : '#000'}`,
       fontSize: '1.5rem',
+      width: `${width ? `${width}px` : ''}`,
     }}
   >
     {children}
