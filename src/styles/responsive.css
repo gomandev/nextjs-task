@@ -75,7 +75,7 @@
   }
 
   .filter-card {
-    position: absolute;
+    position: fixed;
     top: 30%;
     z-index: 112;
     background: #ffffff;
